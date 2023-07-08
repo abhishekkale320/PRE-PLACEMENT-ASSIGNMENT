@@ -1,0 +1,792 @@
+Write a Python program to reverse a string with using any built-in string reversal functions
+def rev_string (str):
+    res_string = str[::-1]
+    return res_string
+str="String"
+res_string = rev_string(str)
+print(res_string)
+gnirtS
+1. Write a Python program to reverse a string without using any built-in string reversal functions
+def reversed_str(string):
+    chars=list(string)# Convert the string to a list of characters
+    length=len(chars)# Get the length of the string
+    
+    for i in range(length // 2): # Iterate through half of the string length and swap characters
+        chars[i], chars[length - i - 1] = chars[length - i - 1], chars[i]# Swap characters at positions i and length - i - 1
+        reversed_string = ''.join(chars)# Convert the list of characters back to a string
+    
+    return reversed_string
+string = "Hello, World!"
+reversed_string = reversed_str(string)
+print(reversed_string)
+    
+!dlroW ,olleH
+2.Implement a function to check if a given string is a palindrome.
+def palindrome(str):
+    str=''.join(c.lower()for c in str if c.isalnum())# Convert the string to lowercase and remove non-alphanumeric characters
+    return str==str[::-1]# Compare the string with its reversed version
+string="my name is anita paul"
+print(palindrome(string))
+string1="mom"
+print(palindrome(string1))
+False
+True
+3. Write a program to find the largest element in a given list.
+def large_num(lists):
+    if not lists:
+        return None
+    largest =lists[0]
+    for element in lists:
+        if element > largest:
+            largest = element
+    return largest
+    
+my_list=[1,2,3,4,5]
+print("largest number of my list",large_num(my_list))
+largest number of my list 5
+4. Implement a function to count the occurrence of each element in a list.
+def count_list_element(count_list):
+    count_dict={}
+    for element in count_list:
+        if element in count_dict:
+            count_dict[element] += 1
+        else:
+            count_dict[element] =1
+    return count_dict
+my_List=[1,1,2,3,4,4,5,5,6]
+print("the occurrence of each element in a list",count_list_element(my_List))
+the occurrence of each element in a list {1: 2, 2: 1, 3: 1, 4: 2, 5: 2, 6: 1}
+5. Write a Python program to find the second largest number in a list.
+def second_largest_number(sl_num):
+    if len(sl_num) < 2:
+        return None
+    largest = float('-inf')  # Initialize largest and second largest to negative infinity
+    second_largest = float('-inf')
+    for num in sl_num:
+        if num > largest:
+            second_largest = largest
+            largest = num
+        elif num > second_largest and num != largest:
+            second_largest = num
+    if second_largest == float('-inf'):
+        return None
+    return second_largest
+
+my_2ndlist = [10, 5, 8, 12, 3]
+print("Second largest number:", second_largest_number(my_2ndlist))
+Second largest number: 10
+6. Implement a function to remove duplicate elements from a list.
+def remove_duplicates(lst):
+    return list(set(lst))
+
+my_list = [1, 2, 3, 4, 2, 3, 5]
+print("Original list:", my_list)
+unique_list = remove_duplicates(my_list)
+print("List with duplicates removed:", unique_list)
+Original list: [1, 2, 3, 4, 2, 3, 5]
+List with duplicates removed: [1, 2, 3, 4, 5]
+7. Write a program to calculate the factorial of a given number.
+def factorial(number):
+    if number==0:
+        return 1
+    else:
+        return number*factorial(number-1)
+number=5
+print("Number:",number,"\nFactorial:",factorial(number))
+Number: 5 
+Factorial: 120
+8. Implement a function to check if a given number is prime.
+def is_prime(n):
+    if n <= 1:
+        return False
+    elif n <= 3:
+        return True
+    elif n % 2 == 0 or n % 3 == 0:
+        return False
+
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+
+    return True
+
+num = 29
+if is_prime(num):
+    print(num, "is a prime number")
+else:
+    print(num, "is not a prime number")
+29 is a prime number
+9. Write a Python program to sort a list of integers in ascending order.
+List= [5, 2, 8, 1, 9, 3]
+List.sort()
+print(List)
+[1, 2, 3, 5, 8, 9]
+10. Implement a function to find the sum of all numbers in a list.
+def calculate_sum(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+my_list = [1, 2, 3, 4, 5]
+sum_of_numbers = calculate_sum(my_list)
+print("Sum:", sum_of_numbers)
+Sum: 15
+11. Write a program to find the common elements between two lists.
+def find_common_element_in_two_list(list1, list2):
+    common_element =list(set(list1) & set(list2)) 
+    return common_element
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+common_element = find_common_element_in_two_list(list1, list2)
+print("Common Elements:", common_element)
+Common Elements: [4, 5]
+def find_common_elements_in_list(list1, list2):
+    set1 = set(list1)
+    set2 = set(list2)
+    common_elements = list(set1.intersection(set2))
+    return common_elements
+
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+common_elements = find_common_elements_in_list(list1, list2)
+print("Common Elements:", common_elements)
+Common Elements: [4, 5]
+12. Implement a function to check if a given string is an anagram of another string.
+an anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+def is_anagram(str1, str2):
+    # Convert the strings to lowercase and remove whitespace
+    str1 = str1.lower().replace(" ", "")
+    str2 = str2.lower().replace(" ", "")
+    
+    # Sort the characters in the strings
+    sorted_str1 = sorted(str1)
+    sorted_str2 = sorted(str2)
+    
+    # Compare the sorted strings
+    if sorted_str1 == sorted_str2:
+        return True
+    else:
+        return False
+
+string1 = "listen"
+string2 = "silent"
+print(is_anagram(string1, string2)) 
+True
+13. Write a Python program to generate all permutations of a given string.
+from itertools import permutations
+
+def generate_permutations(string):
+    perms = permutations(string)# Generate all permutations of the string
+    perm_list = [''.join(perm) for perm in perms] # Convert the permutations to a list of strings
+    return perm_list
+
+string = "abc"
+permutations = generate_permutations(string)
+print(permutations)
+['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
+14. Implement a function to calculate the Fibonacci sequence up to a given number of terms.
+def fibonacci (number):
+    fib_squ = []
+    a, b = 0 , 1
+    while len(fib_squ) < number:
+        fib_squ.append(a)
+        a, b = b, a+b
+    return fib_squ
+number=10
+print("fibonacci",fibonacci(number))
+fibonacci [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+15. Write a program to find the median of a list of numbers.
+def find_median (numbers):
+    sorted_numbers = sorted(numbers)
+    length = len(sorted_numbers)
+    
+    if length % 2 == 0:
+        median = sorted_numbers[length // 2]
+        
+    else:
+        mid_right = length // 2
+        mid_left = mid_right-1
+        median = (sorted_numbers[mid_left] + sorted_numbers[mid_right]) / 2
+    return median
+numbers = [5, 2, 7, 4, 1, 9, 3]
+print("median",find_median(numbers))
+median 3.5
+16. Implement a function to check if a given list is sorted in non-decreasing order.
+def is_sorted(nums):
+    for i in range(len(nums) - 1):
+        if nums[i] > nums[i + 1]:
+            return False
+    return True
+
+nums1 = [1, 2, 3, 4, 5]
+nums2 = [5, 2, 7, 4, 1]
+print(is_sorted(nums1)) 
+print(is_sorted(nums2)) 
+True
+False
+17. Write a Python program to find the intersection of two lists.
+def find_intersection(list1, list2):
+    set1 = set(list1)
+    set2 = set(list2)
+    intersection = list(set1.intersection(set2))
+    return intersection
+
+list1 = [1, 2, 3, 4, 5]
+list2 = [4, 5, 6, 7, 8]
+intersection = find_intersection(list1, list2)
+print("Intersection:", intersection)
+Intersection: [4, 5]
+18. Implement a function to find the maximum subarray sum in a given list.
+def max_subarray_sum(nums):
+    max_sum = float('-inf')  # Initialize max_sum to negative infinity
+    current_sum = 0  # Initialize current_sum to 0
+
+    for num in nums:
+        current_sum += num
+        if current_sum > max_sum:
+            max_sum = current_sum
+        if current_sum < 0:
+            current_sum = 0
+
+    return max_sum
+
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+max_sum = max_subarray_sum(nums)
+print("Maximum subarray sum:", max_sum)
+Maximum subarray sum: 6
+19. Write a program to remove all vowels from a given string.
+def remove_vowels(string):
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    new_string = ''
+
+    for char in string:
+        if char.lower() not in vowels:
+            new_string += char
+
+    return new_string
+
+string = "Hello, World!"
+new_string = remove_vowels(string)
+print("String without vowels:", new_string)
+String without vowels: Hll, Wrld!
+20. Implement a function to reverse the order of words in a given sentence.
+def reverse_sentence(sentence):
+    words = sentence.split()
+    reversed_words = words[::-1]
+    reversed_sentence = ' '.join(reversed_words)
+    return reversed_sentence
+
+sentence = "Hello, world!"
+reversed_sentence = reverse_sentence(sentence)
+print("Reversed sentence:", reversed_sentence)
+Reversed sentence: world! Hello,
+21. Write a Python program to check if two strings are anagrams of each other.
+question : 12
+
+22. Implement a function to find the first non-repeating character in a string.
+def find_first_non_repeating_char(string):
+    # Create a dictionary to store the count of each character
+    char_count = {}
+    
+    # Iterate through the string and update the character count
+    for char in string:
+        char_count[char] = char_count.get(char, 0) + 1
+    
+    # Iterate through the string again and return the first character with count 1
+    for char in string:
+        if char_count[char] == 1:
+            return char
+    
+    # If no non-repeating character is found, return None
+    return None
+
+string = "abracadabra"
+first_non_repeating_char = find_first_non_repeating_char(string)
+if first_non_repeating_char:
+    print("The first non-repeating character is:", first_non_repeating_char)
+else:
+    print("No non-repeating character found.")
+The first non-repeating character is: c
+23. Write a program to find the prime factors of a given number.
+import math
+
+def find_prime_factors(number):
+    prime_factors = []
+    
+    # Check for divisibility by 2
+    while number % 2 == 0:
+        prime_factors.append(2)
+        number = number // 2
+    
+    # Check for divisibility by odd numbers starting from 3
+    for i in range(3, int(math.sqrt(number)) + 1, 2):
+        while number % i == 0:
+            prime_factors.append(i)
+            number = number // i
+    
+    # If the number itself is a prime number greater than 2
+    if number > 2:
+        prime_factors.append(number)
+    
+    return prime_factors
+
+number = 84
+prime_factors = find_prime_factors(number)
+print("Prime factors of", number, "are:", prime_factors)
+Prime factors of 84 are: [2, 2, 3, 7]
+24. Implement a function to check if a given number is a power of two.
+def is_power_of_two(number):
+    if number <= 0:
+        return False
+    return (number & (number - 1)) == 0
+number = 16
+result = is_power_of_two(number)
+print(number, "is a power of two:", result)
+
+number = 15
+result = is_power_of_two(number)
+print(number, "is a power of two:", result)
+16 is a power of two: True
+15 is a power of two: False
+25. Write a Python program to merge two sorted lists into a single sorted list.
+def merge_sorted_lists(list1, list2):
+    merged_list = []
+    i = 0
+    j = 0
+    
+    while i < len(list1) and j < len(list2):
+        if list1[i] <= list2[j]:
+            merged_list.append(list1[i])
+            i += 1
+        else:
+            merged_list.append(list2[j])
+            j += 1
+    
+    # Append remaining elements from list1, if any
+    while i < len(list1):
+        merged_list.append(list1[i])
+        i += 1
+    
+    # Append remaining elements from list2, if any
+    while j < len(list2):
+        merged_list.append(list2[j])
+        j += 1
+    
+    return merged_list
+list1 = [1, 3, 5, 7]
+list2 = [2, 4, 6, 8]
+merged_list = merge_sorted_lists(list1, list2)
+print("Merged list:", merged_list)
+Merged list: [1, 2, 3, 4, 5, 6, 7, 8]
+26. Implement a function to find the mode of a list of numbers.
+def find_mode(numbers):
+    counts = {}
+    mode = []
+    max_count = 0
+    
+    # Count the occurrences of each number
+    for num in numbers:
+        if num in counts:
+            counts[num] += 1
+        else:
+            counts[num] = 1
+    
+    # Find the numbers with the highest count
+    for num, count in counts.items():
+        if count > max_count:
+            mode = [num]
+            max_count = count
+        elif count == max_count:
+            mode.append(num)
+    
+    return mode
+numbers = [1, 2, 3, 2, 4, 5, 2, 6, 2, 4, 7]
+mode = find_mode(numbers)
+print("Mode(s):", mode)
+Mode(s): [2]
+27. Write a program to find the greatest common divisor (GCD) of two numbers.
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+num1 = 36
+num2 = 48
+result = gcd(num1, num2)
+print("GCD:", result)
+GCD: 12
+28. Implement a function to calculate the square root of a given number.
+To calculate the square root of a number, such as the Babylonian method or the binary search method.
+
+def sqrt(num):
+    if num < 0:
+        raise ValueError("Square root is not defined for negative numbers")
+    if num == 0:
+        return 0
+
+    # Initial guess for the square root
+    x = num / 2
+    while True:
+        # Calculate a better approximation for the square root
+        y = (x + num / x) / 2
+        # Check if the approximation is close enough
+        if abs(x - y) < 0.0001:
+            return y
+        x = y
+num = 16
+result = sqrt(num)
+print("Square root:", result)
+Square root: 4.000000000000004
+29. Write a Python program to check if a given string is a valid palindrome ignoring non-alphanumeric characters.
+The "re" module is used to remove non-alphanumeric characters from the string using regular expression re.sub('[^a-zA-Z0-9]', '', s). The resulting string is then converted to lowercase using .lower().
+
+Next,to checks if the modified string s is equal to its reversed version s[::-1]. If they are equal, then the original string is a valid palindrome, ignoring non-alphanumeric characters.
+
+import re
+
+def is_valid_palindrome(s):
+    # Remove non-alphanumeric characters and convert to lowercase
+    s = re.sub('[^a-zA-Z0-9]', '', s).lower()
+
+    # Check if the string is a palindrome
+    return s == s[::-1]
+string = "A man, a plan, a canal: Panama"
+result = is_valid_palindrome(string)
+print("Is valid palindrome:", result)
+Is valid palindrome: True
+30. Implement a function to find the minimum element in a rotated sorted list.
+A modified version of binary search is used to find the minimum element. The algorithm compares the middle element with the rightmost element to determine whether the minimum element is in the left half or the right half. This comparison is done until the left and right indices converge to a single element, which will be the minimum element.
+
+def find_minimum(nums):
+    left = 0
+    right = len(nums) - 1
+
+    while left < right:
+        mid = left + (right - left) // 2
+
+        # If the middle element is greater than the rightmost element,
+        # the minimum element is in the right half
+        if nums[mid] > nums[right]:
+            left = mid + 1
+        # If the middle element is less than the rightmost element,
+        # the minimum element is in the left half or is the middle element itself
+        else:
+            right = mid
+
+    # The left index will point to the minimum element
+    return nums[left]
+nums = [4, 5, 6, 7, 0, 1, 2]
+min_element = find_minimum(nums)
+print("Minimum element:", min_element)
+Minimum element: 0
+31. Write a program to find the sum of all even numbers in a list.
+The function "sum_of_even_numbers" takes a list nums as input. It initializes a variable sum_even to store the sum of even numbers. Then, it iterates through each element in the list using a for loop. Inside the loop, it checks if the current number is even by using the modulus operator % to check if the number is divisible by 2 with no remainder. If the number is even, it adds it to the sum_even variable. Finally, it returns the sum_even value.
+
+def sum_of_even_numbers(nums):
+    sum_even = 0
+
+    for num in nums:
+        if num % 2 == 0:
+            sum_even += num
+
+    return sum_even
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+sum_even = sum_of_even_numbers(nums)
+print("Sum of even numbers:", sum_even)
+Sum of even numbers: 30
+32. Implement a function to calculate the power of a number using recursion.
+The power function takes two parameters: "base" and "exponent". It uses recursion to calculate the power of the base raised to the exponent. Here's how the function works:
+
+If the "exponent" is 0, the function returns 1 because any number raised to the power of 0 is 1.
+
+If the "exponent" is negative, the function calculates the reciprocal of the power by dividing 1 by the result of power(base, -exponent).
+
+If the "exponent" is positive, the function recursively calls itself with the updated exponent (exponent - 1) and multiplies the base by the result.
+
+def power(base, exponent):
+    if exponent == 0:
+        return 1
+    elif exponent < 0:
+        return 1 / power(base, -exponent)
+    else:
+        return base * power(base, exponent - 1)
+base = 2
+exponent = 3
+result = power(base, exponent)
+print("Result:", result)
+Result: 8
+33. Write a Python program to remove duplicates from a list while preserving the order.
+The remove_duplicates function takes a list (lst) as input. It initializes an empty set (seen) to keep track of the elements seen so far. The list comprehension iterates over each element (x) in the original list (lst) and only includes it in the new list if it has not been seen before. The seen.add(x) call adds the element x to the set seen to mark it as seen.
+
+def remove_duplicates(lst):
+    seen = set()
+    return [x for x in lst if not (x in seen or seen.add(x))]
+lst = [1, 2, 3, 2, 4, 1, 5, 4, 6]
+result = remove_duplicates(lst)
+print(result)
+[1, 2, 3, 4, 5, 6]
+34. Implement a function to find the longest common prefix among a list of strings.
+The longest_common_prefix function takes a list of strings (strs) as input. It first checks if the list is empty and returns an empty string in that case. It then iterates through the characters of the first string in the list (strs[0]). For each character, it compares it with the corresponding character in the other strings (strs[j][i]). If the character does not match or if the index is out of range for any string, it returns the current common prefix. Otherwise, it appends the character to the common prefix.
+
+def longest_common_prefix(strs):
+    if not strs:
+        return ""
+    common_prefix = ""
+    for i in range(len(strs[0])):
+        char = strs[0][i]
+        for j in range(1, len(strs)):
+            if i >= len(strs[j]) or strs[j][i] != char:
+                return common_prefix
+        common_prefix += char
+    return common_prefix
+strings = ["flower", "flow", "flight"]
+prefix = longest_common_prefix(strings)
+print(prefix)
+fl
+35. Write a program to check if a given number is a perfect square.
+The is_perfect_square function takes a number (num) as input. It calculates the square root of the number using the math.isqrt function. If the square root multiplied by itself is equal to the original number, then the number is a perfect square and the function returns True. Otherwise, it returns False.
+
+Note that the math.isqrt function returns the largest integer less than or equal to the square root of the number, ensuring an accurate result for perfect squares.
+
+import math
+
+def is_perfect_square(num):
+    sqrt = math.isqrt(num)
+    return sqrt * sqrt == num
+num = 16
+if is_perfect_square(num):
+    print(num, "is a perfect square")
+else:
+    print(num, "is not a perfect square")
+16 is a perfect square
+36. Implement a function to calculate the product of all elements in a list.
+The calculate_product function takes a list of numbers (nums) as input. It initializes the product variable to 1. Then, it iterates through each number in the list and multiplies it with the current product. Finally, it returns the calculated product.
+
+You can replace the numbers list with any other list of numbers to calculate the product of different elements.
+
+def calculate_product(nums):
+    product = 1
+    for num in nums:
+        product *= num
+    return product
+numbers = [2, 3, 4, 5]
+result = calculate_product(numbers)
+print("Product:", result)
+Product: 120
+37. Write a Python program to reverse the order of words in a sentence while preserving the word order.
+def reverse_sentence(sentence):
+    # Split the sentence into individual words
+    words = sentence.split()
+
+    # Reverse the order of words
+    reversed_words = list(reversed(words))
+
+    # Join the reversed words into a sentence
+    reversed_sentence = ' '.join(reversed_words)
+
+    return reversed_sentence
+
+input_sentence = "beautyful are You world! Hello"
+reversed_sentence = reverse_sentence(input_sentence)
+print("Reversed Sentence:", reversed_sentence)
+Reversed Sentence: Hello world! You are beautyful
+38. Implement a function to find the missing number in a given list of consecutive numbers.
+The find_missing_number function takes a list of consecutive numbers as input. It calculates the expected sum of consecutive numbers using the formula (n * (n + 1)) // 2, where n is the length of the list plus 1. It then calculates the actual sum of the given list using the sum() function. Finally, it subtracts the actual sum from the expected sum to find the missing number.
+
+def find_missing_number(nums):
+    # Calculate the expected sum of consecutive numbers
+    n = len(nums) + 1
+    expected_sum = (n * (n + 1)) // 2
+    # Calculate the actual sum of the given list
+    actual_sum = sum(nums)
+    # Calculate the missing number
+    missing_number = expected_sum - actual_sum
+    return missing_number
+numbers = [1, 2, 3, 5, 6, 7, 8]
+missing_number = find_missing_number(numbers)
+print("Missing number:", missing_number)
+Missing number: 4
+39. Write a program to find the sum of digits of a given number.
+The sum_of_digits function takes a number as input. It converts the number to a string using the str() function. It then iterates through the digits of the number using a for loop. Inside the loop, it converts each digit back to an integer using the int() function and adds it to the digit_sum variable. Finally, it returns the digit_sum as the result.
+
+def sum_of_digits(number):
+    # Convert the number to a string
+    number_str = str(number)
+
+    # Initialize the sum
+    digit_sum = 0
+
+    # Iterate through the digits of the number
+    for digit in number_str:
+        # Convert each digit back to an integer and add it to the sum
+          digit_sum += int(digit)
+    return digit_sum
+number = 12345
+digit_sum = sum_of_digits(number)
+print("Sum of digits:", digit_sum)
+Sum of digits: 15
+40. Implement a function to check if a given string is a valid palindrome considering case sensitivity.
+The is_valid_palindrome function takes a string as input. It converts the string to lowercase using the lower() function to make the comparison case-insensitive. It then initializes the start and end pointers to the beginning and end of the string, respectively. It iterates until the middle of the string using a while loop. Inside the loop, it ignores non-alphanumeric characters using another while loop. It then compares the characters at the start and end positions. If they do not match, it returns False indicating that the string is not a valid palindrome. If the loop completes without finding any mismatches, it returns True indicating that the string is a valid palindrome.
+
+def is_valid_palindrome(string):
+    # Convert the string to lowercase
+    string = string.lower()
+
+    # Initialize the start and end pointers
+    start = 0
+    end = len(string) - 1
+
+    # Iterate until the middle of the string
+    while start < end:
+        # Ignore non-alphanumeric characters
+        while start < end and not string[start].isalnum():
+            start += 1
+        while start < end and not string[end].isalnum():
+            end -= 1
+
+        # Compare the characters
+        if string[start] != string[end]:
+            return False
+
+        # Move the pointers
+        start += 1
+        end -= 1
+
+    return True
+string = "A man, a plan, a canal: Panama"
+is_palindrome = is_valid_palindrome(string)
+print("Is valid palindrome:", is_palindrome)
+Is valid palindrome: True
+41. Write a Python program to find the smallest missing positive integer in a list.
+The find_smallest_missing_positive function takes a list of integers nums as input. It starts by marking all the non-positive numbers (including zero) as seen by replacing them with n + 1, where n is the length of the list. Then, it marks the presence of positive numbers by negating the value at the corresponding index if the number is within the range 1 to n. Finally, it iterates through the list to find the smallest missing positive integer. If all positive integers from 1 to n are present, it returns n + 1.
+
+def find_smallest_missing_positive(nums):
+    n = len(nums)
+
+    # Step 1: Mark all the non-positive numbers as seen
+    for i in range(n):
+        if nums[i] <= 0:
+            nums[i] = n + 1
+
+    # Step 2: Mark the presence of positive numbers
+    for i in range(n):
+        num = abs(nums[i])
+        if num <= n:
+            nums[num - 1] = -abs(nums[num - 1])
+
+    # Step 3: Find the smallest missing positive integer
+    for i in range(n):
+        if nums[i] > 0:
+            return i + 1
+
+    # If all positive integers from 1 to n are present, return n + 1
+    return n + 1
+nums = [3, 4, -1, 1]
+smallest_missing = find_smallest_missing_positive(nums)
+print("Smallest missing positive integer:", smallest_missing)
+Smallest missing positive integer: 2
+42. Implement a function to find the longest palindrome substring in a given string.
+The longest_palindrome_substring function takes a string s as input. It uses a helper function expand_around_center to expand around a center character (or two characters for even-length palindromes) and checks if the characters on both sides are the same. It keeps track of the longest palindrome substring found so far by updating the start and end indices. Finally, it returns the substring using slicing based on the start and end indices.
+
+def longest_palindrome_substring(s):
+    if not s:
+        return ""
+    
+    n = len(s)
+    start = 0
+    end = 0
+
+    # Helper function to expand around a center
+    def expand_around_center(left, right):
+        while left >= 0 and right < n and s[left] == s[right]:
+            left -= 1
+            right += 1
+        return right - left - 1
+    
+    # Iterate through each character as the center
+    for i in range(n):
+        len1 = expand_around_center(i, i)  # Odd-length palindrome
+        len2 = expand_around_center(i, i+1)  # Even-length palindrome
+        max_len = max(len1, len2)
+        
+        # Update start and end indices if a longer palindrome is found
+        if max_len > end - start:
+            start = i - (max_len - 1) // 2
+            end = i + max_len // 2
+    
+    return s[start:end+1]
+
+# Example usage
+s = "babad"
+longest_palindrome = longest_palindrome_substring(s)
+print("Longest palindrome substring:", longest_palindrome)
+Longest palindrome substring: aba
+43. Write a program to find the number of occurrences of a given element in a list.
+The count_occurrences function takes a list lst and an element element as input. It initializes a count variable to keep track of the occurrences. It then iterates through each item in the list and checks if it matches the given element. If a match is found, it increments the count. Finally, it returns the count of occurrences.
+
+def count_occurrences(lst, element):
+    count = 0
+    for item in lst:
+        if item == element:
+            count += 1
+    return count
+my_list = [1, 2, 3, 2, 4, 2, 5]
+element = 2
+occurrences = count_occurrences(my_list, element)
+print("Number of occurrences:", occurrences)
+Number of occurrences: 3
+44. Implement a function to check if a given number is a perfect number.
+The is_perfect_number function takes a number num as input. It first checks if the number is less than or equal to 0. If so, it returns False since perfect numbers are defined as positive integers. It then iterates from 1 to num - 1 and checks if each number is a proper divisor of num. If a proper divisor is found, it adds it to the divisor_sum. Finally, it compares the divisor_sum with the original number to determine if it is a perfect number.
+
+def is_perfect_number(num):
+    if num <= 0:
+        return False
+
+    divisor_sum = 0
+    for i in range(1, num):
+        if num % i == 0:
+            divisor_sum += i
+    return divisor_sum == num
+number = 28
+is_perfect = is_perfect_number(number)
+print("Is", number, "a perfect number?", is_perfect)
+Is 28 a perfect number? True
+45. Write a Python program to remove all duplicates from a string.
+The remove_duplicates function takes a string string as input. It creates an empty set called unique_chars to store the unique characters encountered. It then iterates through each character in the string and adds it to the set using the add method. Since sets only allow unique elements, duplicates are automatically removed. Finally, it uses the join method to join the characters in the set and form a new string containing only the unique characters.
+
+def remove_duplicates(string):
+    # Create an empty set to store unique characters
+    unique_chars = set()
+    # Iterate through each character in the string
+    for char in string:
+        # Add the character to the set
+        unique_chars.add(char)
+    # Join the characters in the set to form a new string
+    unique_string = ''.join(unique_chars)
+    return unique_string
+string = "Hello, World!"
+result = remove_duplicates(string)
+print("String with duplicates removed:", result)
+String with duplicates removed: ,d!Wl eHor
+46. Implement a function to find the first missing positive
+The find_first_missing_positive function takes a list nums as input. It creates a set called positive_nums to store the positive integers encountered in the list. It then starts iterating from 1 and checks if each positive integer exists in the set using the in operator. If a positive integer is not found, it means it is the first missing positive integer. Finally, it returns the first missing positive integer.
+
+def find_first_missing_positive(nums):
+    # Create a set to store positive integers
+    positive_nums = set(nums)
+
+    # Iterate through positive integers starting from 1
+    i = 1
+    while i in positive_nums:
+        i += 1
+
+    # Return the first missing positive integer
+    return i
+nums = [1, 2, 0]
+result = find_first_missing_positive(nums)
+print("First missing positive integer:", result)
+First missing positive integer: 3
+ 
